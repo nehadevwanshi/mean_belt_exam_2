@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+	<body>
+		<div class = "container">
+			
+
+				<ul>
+					<li>Bucket List </li>
+					<li> <a href = "#/items/{{login_user}}"> Home</a></li>
+					<li><a href= "" ng-click="logout()">Logout</a> </li>
+
+				</ul>	
+					<h2>Welcome {{login_user}}  </h2>
+	        	
+				<div ng-controller='createController'>
+					<form>
+							Title : <input ng-model= "bucket.title" required="true" minlength=5 type = "text" value= "">
+							Description:<input  minlength=10 required="true" ng-model= "bucket.description" type = "text" value= "">
+							<select ng-model="bucket.user_name" >
+								<option ng-repeat="user in users"  value="{{user.user_name}}">{{user.user_name}}</option>	
+							</select>
+							<input type="button" value="Add to List" ng-click="createItem()">
+
+					</form>
+				    <div role="alert">
+				      <span class="error" ng-show="$error.minlength">
+				        Too short!</span>
+				    </div>
+				</div>
+				<br><br>
+				<h4>Before I die I want to</h4>
+				<div>
+					
+					<ul>
+						<li ng-repeat="bucket in items">
+							<input type= "checkbox" value="" ng-model='bucket.completed' ng-change="markTaskCompleted(bucket);"> {{bucket.user_name}} {{bucket.description}} {{bucket.date_created | date:'mediumDate'}}
+						</li>
+					</ul>
+
+				</div>
+				<br>
+				<h4>List of other users (Click here to view profile)</h4>
+				<div ng-controller='showController'>
+					<ul>
+						<li ng-repeat="user in users">
+							<a href = "" ng-click='showUserBucket(user.user_name)'>{{user.user_name}}</a>
+						</li>	
+					</ul>
+					
+				</div>
+		</div>	
+         
+    </body>
+</html>    

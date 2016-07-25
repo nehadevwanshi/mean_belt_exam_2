@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+	<body>
+		<div class = "container">
+			
+
+				<ul>
+					<li>Bucket List </li>
+					<li> <a href = "#/items/{{login_user}}"> Home</a></li>
+					<li><a href= "" ng-click="logout()">Logout</a> </li>
+
+				</ul>	
+					<h2>{{login_user}}'s Bucket list</h2>
+	        	
+				<br><br>
+				<h4>Done</h4>
+				<div>
+					
+					<ul>
+						<li ng-repeat="bucket in items | filter: { completed: true }">
+							<input type= "checkbox" checked="" value=""> {{bucket.user_name}} {{bucket.description}} {{bucket.date_created | date:'mediumDate'}}
+						</li>
+					</ul>
+
+				</div>
+				<br>
+				<h4>Pending</h4>
+				<div>
+					<ul>
+						<li ng-repeat="bucket in items | filter: { completed: false }">
+							<input type= "checkbox" value=""> {{bucket.user_name}} {{bucket.description}} {{bucket.date_created | date:'mediumDate'}}
+						</li>	
+					</ul>
+					
+				</div>
+		</div>	
+         
+    </body>
+</html>    
